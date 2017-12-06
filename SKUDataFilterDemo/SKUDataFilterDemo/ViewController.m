@@ -135,7 +135,7 @@
     return _dataSource.count;
 }
 
-- (NSArray<NSString *> *)filter:(ORSKUDataFilter *)filter propertiesInSection:(NSInteger)section {
+- (NSArray *)filter:(ORSKUDataFilter *)filter propertiesInSection:(NSInteger)section {
     return _dataSource[section][@"value"];
 }
 
@@ -143,7 +143,7 @@
     return _skuData.count;
 }
 
-- (NSArray<NSString *> *)filter:(ORSKUDataFilter *)filter conditionForRow:(NSInteger)row {
+- (NSArray *)filter:(ORSKUDataFilter *)filter conditionForRow:(NSInteger)row {
     NSString *condition = _skuData[row][@"contition"];
     return [condition componentsSeparatedByString:@","];
 }
@@ -153,7 +153,6 @@
     return @{@"price": dic[@"price"],
              @"store": dic[@"store"]};
 }
-
 
 #pragma mark -- action
 - (IBAction)action_complete:(id)sender {

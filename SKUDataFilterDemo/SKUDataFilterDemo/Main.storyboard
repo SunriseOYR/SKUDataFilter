@@ -139,7 +139,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qIT-5u-lvn">
-                                <rect key="frame" x="0.0" y="84" width="375" height="446"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="466"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hRz-dK-O4g">
                                     <size key="itemSize" width="70" height="40"/>
@@ -233,7 +233,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEMO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Geo-7L-B8c">
-                                <rect key="frame" x="160.5" y="36" width="54" height="21"/>
+                                <rect key="frame" x="160.5" y="30" width="54" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -246,7 +246,7 @@
                         <constraints>
                             <constraint firstItem="GuI-BJ-Phj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1n1-ML-J8I"/>
                             <constraint firstItem="fhb-ca-6o0" firstAttribute="top" secondItem="qIT-5u-lvn" secondAttribute="bottom" constant="1" id="7Oz-nb-YKG"/>
-                            <constraint firstItem="qIT-5u-lvn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="DAV-1I-cNu"/>
+                            <constraint firstItem="qIT-5u-lvn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="DAV-1I-cNu"/>
                             <constraint firstItem="GuI-BJ-Phj" firstAttribute="top" secondItem="fhb-ca-6o0" secondAttribute="bottom" constant="8" id="K0e-NV-rXy"/>
                             <constraint firstItem="fhb-ca-6o0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MCP-i1-QFc"/>
                             <constraint firstItem="Geo-7L-B8c" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="MJV-2L-gfY"/>
@@ -257,11 +257,7 @@
                                 </userDefinedRuntimeAttributes>
                             </constraint>
                             <constraint firstItem="qIT-5u-lvn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Txo-E5-faU"/>
-                            <constraint firstItem="Geo-7L-B8c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="f6s-od-Zzb">
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adaptConstant" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </constraint>
+                            <constraint firstItem="Geo-7L-B8c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="f6s-od-Zzb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fhb-ca-6o0" secondAttribute="trailing" id="urq-TK-nSm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qIT-5u-lvn" secondAttribute="trailing" id="vlB-Pl-3St"/>
                         </constraints>
