@@ -35,6 +35,7 @@
  */
 
 @class ORSKUDataFilter;
+@class ORSKUProperty;
 
 @protocol ORSKUDataFilterDataSource <NSObject>
 
@@ -44,13 +45,13 @@
 - (NSInteger)numberOfSectionsForPropertiesInFilter:(ORSKUDataFilter *)filter;
 
 //每行所有的的属性值
-- (NSArray<NSString *> *)filter:(ORSKUDataFilter *)filter propertiesInSection:(NSInteger)section;
+- (NSArray *)filter:(ORSKUDataFilter *)filter propertiesInSection:(NSInteger)section;
 
 //满足条件 的 个数
 - (NSInteger)numberOfConditionsInFilter:(ORSKUDataFilter *)filter;
 
 //对应的条件式
-- (NSArray<NSString *> *)filter:(ORSKUDataFilter *)filter conditionForRow:(NSInteger)row;
+- (NSArray *)filter:(ORSKUDataFilter *)filter conditionForRow:(NSInteger)row;
 
 //条件对应的 其他数据 
 - (id)filter:(ORSKUDataFilter *)filter resultOfConditionForRow:(NSInteger)row;
@@ -81,13 +82,21 @@
 @end
 
 
-@interface ORSkuModel :NSObject
+@interface ORSKUCondition :NSObject
 
-@property (nonatomic, strong) NSArray<NSString *> *conditions;
-@property (nonatomic, strong) NSArray<NSNumber *> *conditionIndexs;
+@property (nonatomic, strong) NSArray<ORSKUProperty *> *properties;
+@property (nonatomic, strong, readonly) NSArray<NSNumber *> *conditionIndexs;
 
 @property (nonatomic, copy) id result;
 
 @end
 
+@interface ORSKUProperty :NSObject
+
+@property (nonatomic, copy) NSIndexPath * indexPath;
+@property (nonatomic, copy) id value;
+
+- (instancetype)initWithValue:(id)value indexPath:(NSIndexPath *)indexPath;
+
+@end
 

@@ -10,7 +10,7 @@
 
 @interface ORSKUDataFilter()
 
-@property (nonatomic, strong) NSSet <ORSkuModel *> *skuModels;
+@property (nonatomic, strong) NSSet <ORSKUCondition *> *conditions;
 
 @property (nonatomic, strong) NSArray <NSIndexPath *> *allAvailableIndexPaths;
 
@@ -89,7 +89,7 @@
     
     __block BOOL isAvailable = NO;
     
-    [_skuModels enumerateObjectsUsingBlock:^(ORSkuModel * _Nonnull obj, BOOL * _Nonnull stop) {
+    [_conditions enumerateObjectsUsingBlock:^(ORSKUCondition * _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj.conditionIndexs objectAtIndex:indexPath.section].integerValue == indexPath.row) {
             isAvailable = YES;
         }
@@ -107,18 +107,41 @@
     NSMutableSet *modelSet = [NSMutableSet set];
 
     for (int i = 0; i < [_dataSource numberOfConditionsInFilter:self]; i ++) {
-        ORSkuModel *model = [ORSkuModel new];
-        NSArray<NSString *> * conditions = [_dataSource filter:self conditionForRow:i];
-        model.conditions = conditions;
-        model.conditionIndexs = [self indexsForProperties:conditions];
+        
+        ORSKUCondition *model = [ORSKUCondition new];
+        NSArray * conditions = [_dataSource filter:self conditionForRow:i];
+        model.properties = [self propertiesWithConditionRawData:conditions];
         model.result = [_dataSource filter:self resultOfConditionForRow:i];
         
         [modelSet addObject:model];
     }
-    _skuModels = [modelSet copy];
+    _conditions = [modelSet copy];
     
     _allAvailableIndexPaths = [self getAllAvailableIndexPaths].allObjects;
     _availableIndexPaths = _allAvailableIndexPaths;
+}
+
+//获取属性
+- (NSArray<ORSKUProperty *> *)propertiesWithConditionRawData:(NSArray *)data {
+    
+    NSMutableArray *array = [NSMutableArray array];
+    [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObject:[self propertyOfValue:obj inSection:idx]];
+    }];
+    
+    return array;
+}
+
+- (ORSKUProperty *)propertyOfValue:(id)value inSection:(NSInteger)section {
+    
+    NSArray *properties = [_dataSource filter:self propertiesInSection:section];
+    
+    NSString *str = [NSString stringWithFormat:@"Properties for %ld dosen‘t exist %@", (long)section, value];
+    NSAssert([properties containsObject:value], str);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[properties indexOfObject:value] inSection:section];
+    
+    return [[ORSKUProperty alloc] initWithValue:value indexPath:indexPath];
 }
 
 //获取条件式 对应 的数据
@@ -126,7 +149,7 @@
     
     __block id result = nil;
     
-    [_skuModels enumerateObjectsUsingBlock:^(ORSkuModel * _Nonnull obj, BOOL * _Nonnull stop) {
+    [_conditions enumerateObjectsUsingBlock:^(ORSKUCondition * _Nonnull obj, BOOL * _Nonnull stop) {
         
         if ([obj.conditionIndexs isEqual:conditionIndexs]) {
             result = obj.result;
@@ -137,52 +160,14 @@
     return result;
 }
 
-//根据 下标 条件式 获取 对应 的数据
-- (id)skuResultWithConditions:(NSArray<NSString *> *)conditions {
-    
-    __block id result = nil;
-    
-    [_skuModels enumerateObjectsUsingBlock:^(ORSkuModel * _Nonnull obj, BOOL * _Nonnull stop) {
-        if ([obj.conditions isEqual:conditions]) {
-            result = obj.result;
-            *stop = YES;
-        }
-    }];
-    
-    return result;
-}
-
-
-//获取某个属性的下标
-- (NSInteger)indexForProperty:(NSString *)property inSection:(NSInteger)section {
-    
-    NSArray *result = [_dataSource filter:self propertiesInSection:section];
-    
-    NSString *str = [NSString stringWithFormat:@"Properties for %ld dosen‘t exist %@", (long)section, property];
-    NSAssert([result containsObject:property], str);
-    
-    return [result indexOfObject:property];
-}
-
-//获取一组属性的下标
-- (NSArray<NSNumber *> *)indexsForProperties:(NSArray<NSString *> *)properties {
-    
-    NSMutableArray *array = [NSMutableArray array];
-    [properties enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [array addObject:@([self indexForProperty:obj inSection:idx])];
-    }];
-    return array;
-}
-
 //获取初始可选的所有IndexPath
 - (NSMutableSet<NSIndexPath *> *)getAllAvailableIndexPaths {
 
     NSMutableSet *set = [NSMutableSet set];
-    [_skuModels enumerateObjectsUsingBlock:^(ORSkuModel * _Nonnull obj, BOOL * _Nonnull stop) {
+    [_conditions enumerateObjectsUsingBlock:^(ORSKUCondition * _Nonnull obj, BOOL * _Nonnull stop) {
         [obj.conditionIndexs enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
             [set addObject:[NSIndexPath indexPathForItem:obj1.integerValue inSection:idx1]];
         }];
-        
     }];
     
     return set;
@@ -192,32 +177,30 @@
 - (NSMutableSet<NSIndexPath *> *)availableIndexPathsFromSelctedIndexPath:(NSIndexPath *)selectedIndexPath sectedIndexPaths:(NSArray<NSIndexPath *> *)indexPaths{
     
     NSMutableSet *set = [NSMutableSet set];
-    [_skuModels enumerateObjectsUsingBlock:^(ORSkuModel * _Nonnull obj, BOOL * _Nonnull stop) {
+    [_conditions enumerateObjectsUsingBlock:^(ORSKUCondition * _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj.conditionIndexs objectAtIndex:selectedIndexPath.section].integerValue == selectedIndexPath.item) {
             
-            [obj.conditionIndexs enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop1) {
-                
-                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:obj2.integerValue inSection:idx2];
-                
+            [obj.properties enumerateObjectsUsingBlock:^(ORSKUProperty * _Nonnull property, NSUInteger idx2, BOOL * _Nonnull stop1) {
+                                
                 //从condition中添加种类不同的属性时，需要根据已选中的属性过滤
                 //过滤方式为 condition要么包含已选中 要么和已选中属性是同级
-                if (indexPath.section != selectedIndexPath.section) {
+                if (property.indexPath.section != selectedIndexPath.section) {
                     
                     __block BOOL flag = YES;
                     
                     [indexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj1, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        flag = (([obj.conditionIndexs[obj1.section] integerValue] == obj1.row) || (obj1.section == indexPath.section)) && flag;
+                        flag = (([obj.conditionIndexs[obj1.section] integerValue] == obj1.row) || (obj1.section == property.indexPath.section)) && flag;
                     }];
                     
                     if (flag) {
-                        [set addObject:indexPath];
+                        [set addObject:property.indexPath];
                     }
+                    
                 }else {
-                    [set addObject:indexPath];
+                    [set addObject:property.indexPath];
                 }
             }];
-            
         }
     }];
     
@@ -273,7 +256,6 @@
     
     for (int i = 0; i < [_dataSource numberOfSectionsForPropertiesInFilter:self]; i ++) {
         [_selectedIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
             if (obj.section == i) {
                 [conditions addObject:@(obj.row)];
             }
@@ -292,10 +274,33 @@
 
 @end
 
-@implementation ORSkuModel
+@implementation ORSKUCondition
+
+- (void)setProperties:(NSArray<ORSKUProperty *> *)properties {
+    
+    _properties = properties;
+    NSMutableArray *array = [NSMutableArray array];
+    [properties enumerateObjectsUsingBlock:^(ORSKUProperty * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObject:@(obj.indexPath.row)];
+    }];
+    _conditionIndexs = [array copy];
+}
 
 @end
 
+@implementation ORSKUProperty
+
+- (instancetype)initWithValue:(id)value indexPath:(NSIndexPath *)indexPath
+{
+    self = [super init];
+    if (self) {
+        _value = value;
+        _indexPath = indexPath;
+    }
+    return self;
+}
+
+@end
 
 
 
