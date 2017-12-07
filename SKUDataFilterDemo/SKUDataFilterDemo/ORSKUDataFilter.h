@@ -53,7 +53,7 @@
 //对应的条件式
 - (NSArray *)filter:(ORSKUDataFilter *)filter conditionForRow:(NSInteger)row;
 
-//条件对应的 其他数据 
+//条件式 对应的 数据（库存、价格等）
 - (id)filter:(ORSKUDataFilter *)filter resultOfConditionForRow:(NSInteger)row;
 
 @end
@@ -85,6 +85,7 @@
 @interface ORSKUCondition :NSObject
 
 @property (nonatomic, strong) NSArray<ORSKUProperty *> *properties;
+
 @property (nonatomic, strong, readonly) NSArray<NSNumber *> *conditionIndexs;
 
 @property (nonatomic, copy) id result;
@@ -93,8 +94,8 @@
 
 @interface ORSKUProperty :NSObject
 
-@property (nonatomic, copy) NSIndexPath * indexPath;
-@property (nonatomic, copy) id value;
+@property (nonatomic, copy, readonly) NSIndexPath * indexPath;
+@property (nonatomic, copy, readonly) id value;
 
 - (instancetype)initWithValue:(id)value indexPath:(NSIndexPath *)indexPath;
 

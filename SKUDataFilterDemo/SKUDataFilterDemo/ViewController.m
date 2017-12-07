@@ -63,15 +63,15 @@
                  @{@"contition":@"famale,blue,XXL,C",
                    @"price":@"1210",
                    @"store":@"300"},
-                 @{@"contition":@"male,blue,L,B",
-                   @"price":@"1210",
-                   @"store":@"300"},
+                 @{@"contition":@"male,blue,L,C",
+                   @"price":@"888",
+                   @"store":@"121"},
                  @{@"contition":@"famale,green,M,C",
-                   @"price":@"1210",
-                   @"store":@"300"},
+                   @"price":@"1288",
+                   @"store":@"125"},
                  @{@"contition":@"male,blue,L,A",
                    @"price":@"1210",
-                   @"store":@"300"}];
+                   @"store":@"123"}];
     
     _filter = [[ORSKUDataFilter alloc] initWithDataSource:self];
     
@@ -127,6 +127,7 @@
     [_filter didSelectedPropertyWithIndexPath:indexPath];
     
     [collectionView reloadData];
+    [self action_complete:nil];
 }
 
 #pragma mark -- ORSKUFilterManagerDataSource
@@ -162,6 +163,7 @@
     
     if (dic == nil) {
         NSLog(@"请选择完整 属性");
+        return;
     }
     
     _priceL.text = [NSString stringWithFormat:@"￥%@",dic[@"price"]];
