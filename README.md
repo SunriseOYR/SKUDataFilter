@@ -68,9 +68,12 @@ SKUDataFilter最终直接反映的是属性的indexPath, 如果你的属性在UI
     //当前 可选的属性indexPath
     @property (nonatomic, strong, readonly) NSArray <NSIndexPath *> *availableIndexPaths;
 
-**使用注意**
-1、虽然SKUDataFilter不关心具体的值，但是条件式本质是由属性组成，故代理方法filter:propertiesInSection：和方法filter:conditionForRow：数据类型应该保持一致  
-2、因为SKUDataFilter关心的是属性的坐标，那么在代理方法传值的时候，代理方法filter:propertiesInSection：和方法filter:conditionForRow：各自的数据顺序要保持一致 并且两个方法的数据也要对应
+**使用注意** 
+
+1、虽然SKUDataFilter不关心具体的值，但是条件式本质是由属性组成，故代理方法filter:propertiesInSection：和方法filter:conditionForRow：数据类型应该保持一致   
+2、因为SKUDataFilter关心的是属性的坐标，那么在代理方法传值的时候，代理方法filter:propertiesInSection：和方法filter:conditionForRow：各自的数据顺序要保持一致 并且两个方法的数据也要对应 
+
 如本文案例条件式是从上往下（M,G,X），传过去的 属性值 也都是从左到右（F、M）-各自保持一致。 同时
-条件式为从上到下，那么propertiesInSection： 也应该是从上到下,先是（F、M）最后是（L、X、S）  
+条件式为从上到下，那么propertiesInSection： 也应该是从上到下,先是（F、M）最后是（L、X、S） 
+
 实际项目中，这两种情况发生的概率都非常小，因为 第一数据统一返回统一解析，格式99%都是一样。第二数据是从服务器返回，服务器的数据要进行筛选和过滤，顺序也不能弄错，一旦错误，首先服务器就会出问题
