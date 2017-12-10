@@ -1,9 +1,11 @@
 # SKUFilterManager
 SKU 商品规格组合算法 
 
+![003.gif](http://upload-images.jianshu.io/upload_images/5192751-68d22cd9e80f8e08.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 [博客详解](http://www.jianshu.com/p/295737e2ac77)
 
-SKUDataFilter 使用NSIndexPath记录每个属性的坐标，更加直观。表示为 **第section 种属性类下面的 第item个 属性 （从0计数)**
+SKUDataFilter 使用NSIndexPath记录每个属性的坐标。表示为 **第section 种属性类下面的 第item个 属性 （从0计数)**
 条件式下标(conditionIndexs)中记录的属性indexPath的 item
 
 
