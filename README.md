@@ -70,7 +70,7 @@ SKUDataFilter最终直接反映的是属性的indexPath, 如果你的属性在UI
 
 **使用注意** 
 
-1、虽然SKUDataFilter不关心具体的值，但是条件式本质是由属性组成，故代理方法filter:propertiesInSection：和方法filter:conditionForRow：数据类型应该保持一致   
+1、虽然SKUDataFilter不关心具体的值，但是条件式本质是由属性组成，故代理方法filter:propertiesInSection：和方法filter:conditionForRow：数据类型应该保持一致  
 2、因为SKUDataFilter关心的是属性的坐标，那么在代理方法传值的时候，代理方法filter:propertiesInSection：和方法filter:conditionForRow：各自的数据顺序要保持一致 并且两个方法的数据也要对应 
 
 如本文案例条件式是从上往下（M,G,X），传过去的 属性值 也都是从左到右（F、M）-各自保持一致。 同时
