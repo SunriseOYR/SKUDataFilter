@@ -246,16 +246,12 @@
                         <constraints>
                             <constraint firstItem="GuI-BJ-Phj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1n1-ML-J8I"/>
                             <constraint firstItem="fhb-ca-6o0" firstAttribute="top" secondItem="qIT-5u-lvn" secondAttribute="bottom" constant="1" id="7Oz-nb-YKG"/>
+                            <constraint firstItem="GuI-BJ-Phj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ABK-xN-t5y"/>
                             <constraint firstItem="qIT-5u-lvn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="DAV-1I-cNu"/>
                             <constraint firstItem="GuI-BJ-Phj" firstAttribute="top" secondItem="fhb-ca-6o0" secondAttribute="bottom" constant="8" id="K0e-NV-rXy"/>
                             <constraint firstItem="fhb-ca-6o0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MCP-i1-QFc"/>
                             <constraint firstItem="Geo-7L-B8c" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="MJV-2L-gfY"/>
                             <constraint firstAttribute="trailing" secondItem="GuI-BJ-Phj" secondAttribute="trailing" id="P5E-hm-0ex"/>
-                            <constraint firstAttribute="bottom" secondItem="GuI-BJ-Phj" secondAttribute="bottom" id="QWx-lI-aZO">
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adaptConstant" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </constraint>
                             <constraint firstItem="qIT-5u-lvn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Txo-E5-faU"/>
                             <constraint firstItem="Geo-7L-B8c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="f6s-od-Zzb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fhb-ca-6o0" secondAttribute="trailing" id="urq-TK-nSm"/>

@@ -12,11 +12,14 @@
 
 @property (nonatomic, strong) NSSet <ORSKUCondition *> *conditions;
 
-@property (nonatomic, strong) NSArray <NSIndexPath *> *allAvailableIndexPaths;
-
 @property (nonatomic, strong) NSMutableArray <NSIndexPath *> *selectedIndexPaths;
 
-@property (nonatomic, strong) NSArray <NSIndexPath *> *availableIndexPaths;
+
+@property (nonatomic, strong) NSMutableSet <NSIndexPath *> *availableIndexPathsSet;
+
+//全可用的
+@property (nonatomic, strong) NSSet <NSIndexPath *> *allAvailableIndexPaths;
+
 
 @property (nonatomic, strong) id  currentResult;
 
@@ -48,7 +51,7 @@
 //选中某个属性
 - (void)didSelectedPropertyWithIndexPath:(NSIndexPath *)indexPath {
     
-    if (![[self availableIndexPaths] containsObject:indexPath]) {
+    if (![_availableIndexPathsSet containsObject:indexPath]) {
         //不可选
         return;
     }
@@ -76,26 +79,21 @@
         }
     }];
     
-    if (lastIndexPath.item != indexPath.item || !lastIndexPath) {
+    if (!lastIndexPath) {
+        //添加新属性
         [_selectedIndexPaths addObject:indexPath];
-        [_selectedIndexPaths removeObject:lastIndexPath];
+        
+        [_availableIndexPathsSet intersectSet:[self availableIndexPathsFromSelctedIndexPath:indexPath sectedIndexPaths:_selectedIndexPaths]];
     }
     
-    [self updateAvailableIndexPaths];
+    if (lastIndexPath.item != indexPath.item) {
+        //切换属性
+        [_selectedIndexPaths addObject:indexPath];
+        [_selectedIndexPaths removeObject:lastIndexPath];
+        [self updateAvailableIndexPaths];
+    }
+    
     [self updateCurrentResult];
-}
-
-- (BOOL)isAvailableWithPropertyIndexPath:(NSIndexPath *)indexPath {
-    
-    __block BOOL isAvailable = NO;
-    
-    [_conditions enumerateObjectsUsingBlock:^(ORSKUCondition * _Nonnull obj, BOOL * _Nonnull stop) {
-        if ([obj.conditionIndexs objectAtIndex:indexPath.section].integerValue == indexPath.row) {
-            isAvailable = YES;
-        }
-    }];;
-    
-    return isAvailable;
 }
 
 
@@ -117,8 +115,7 @@
     }
     _conditions = [modelSet copy];
     
-    _allAvailableIndexPaths = [self getAllAvailableIndexPaths].allObjects;
-    _availableIndexPaths = _allAvailableIndexPaths;
+    [self getAllAvailableIndexPaths];
 }
 
 //获取属性
@@ -170,6 +167,10 @@
         }];
     }];
     
+    _availableIndexPathsSet = set;
+    
+    _allAvailableIndexPaths = [set copy];
+    
     return set;
 }
 
@@ -205,7 +206,7 @@
     }];
     
     //合并本行数据
-    [_allAvailableIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_allAvailableIndexPaths enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, BOOL * _Nonnull stop) {
         if (obj.section == selectedIndexPath.section) {
             [set addObject:obj];
         }
@@ -218,7 +219,8 @@
 - (void)updateAvailableIndexPaths {
     
     if (_selectedIndexPaths.count == 0) {
-        _availableIndexPaths = _allAvailableIndexPaths;
+        
+        _availableIndexPathsSet = [_allAvailableIndexPaths mutableCopy];
         return ;
     }
     
@@ -242,7 +244,9 @@
         
     }];
     
-    _availableIndexPaths = set.allObjects;
+    _availableIndexPathsSet = set;
+
+    
 }
 
 // 当前结果
@@ -265,6 +269,20 @@
     _currentResult = [self skuResultWithConditionIndexs:[conditions copy]];
 }
 
+- (BOOL)isAvailableWithPropertyIndexPath:(NSIndexPath *)indexPath {
+    
+    __block BOOL isAvailable = NO;
+    
+    [_conditions enumerateObjectsUsingBlock:^(ORSKUCondition * _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj.conditionIndexs objectAtIndex:indexPath.section].integerValue == indexPath.row) {
+            isAvailable = YES;
+            *stop = YES;
+        }
+    }];;
+    
+    return isAvailable;
+}
+
 
 #pragma mark -- setter
 - (void)setDataSource:(id<ORSKUDataFilterDataSource>)dataSource {
@@ -281,7 +299,7 @@
     _properties = properties;
     NSMutableArray *array = [NSMutableArray array];
     [properties enumerateObjectsUsingBlock:^(ORSKUProperty * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [array addObject:@(obj.indexPath.row)];
+        [array addObject:@(obj.indexPath.item)];
     }];
     _conditionIndexs = [array copy];
 }

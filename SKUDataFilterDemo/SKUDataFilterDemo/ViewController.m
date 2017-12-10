@@ -42,7 +42,8 @@
     
     _selectedIndexPaths = [NSMutableArray array];
     
-    _skuData = @[@{@"contition":@"male,red,XL,A",
+    _skuData = @[
+                 @{@"contition":@"male,red,XL,A",
                    @"price":@"1120",
                    @"store":@"167"},
                  @{@"contition":@"male,red,M,B",
@@ -71,7 +72,8 @@
                    @"store":@"125"},
                  @{@"contition":@"male,blue,L,A",
                    @"price":@"1210",
-                   @"store":@"123"}];
+                   @"store":@"123"}
+                 ];
     
     _filter = [[ORSKUDataFilter alloc] initWithDataSource:self];
     
@@ -95,7 +97,7 @@
     NSArray *data = _dataSource[indexPath.section][@"value"];
     cell.propertyL.text = data[indexPath.row];
     
-    if ([_filter.availableIndexPaths containsObject:indexPath]) {
+    if ([_filter.availableIndexPathsSet containsObject:indexPath]) {
         [cell setTintStyleColor:[UIColor blackColor]];
     }else {
         [cell setTintStyleColor:[UIColor lightGrayColor]];
@@ -130,7 +132,7 @@
     [self action_complete:nil];
 }
 
-#pragma mark -- ORSKUFilterManagerDataSource
+#pragma mark -- ORSKUDataFilterDataSource
 
 - (NSInteger)numberOfSectionsForPropertiesInFilter:(ORSKUDataFilter *)filter {
     return _dataSource.count;
@@ -159,10 +161,12 @@
 - (IBAction)action_complete:(id)sender {
     
     
-    NSDictionary *dic = [_filter currentResult];
+    NSDictionary *dic = _filter.currentResult;
     
     if (dic == nil) {
         NSLog(@"请选择完整 属性");
+        _priceL.text = @"￥0";
+        _storeL.text = @"库存0件";
         return;
     }
     
