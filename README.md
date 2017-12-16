@@ -12,7 +12,8 @@ SKU 商品规格组合算法
 
 2017.12.16 由于之前的疏忽，在更新算法的时候，漏了一个点，导致一个非常严重的bug，感谢简书网友@毕小强 指出，已更新
 
-**正文**  
+**正文**    
+
 SKUDataFilter 使用NSIndexPath记录每个属性的坐标。表示为 **第section 种属性类下面的 第item个 属性 （从0计数)**
 条件式下标(conditionIndexs)中记录的属性indexPath的 item
 
