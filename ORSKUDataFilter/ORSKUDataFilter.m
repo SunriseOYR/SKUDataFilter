@@ -82,8 +82,9 @@
     if (!lastIndexPath) {
         //添加新属性
         [_selectedIndexPaths addObject:indexPath];
-        
         [_availableIndexPathsSet intersectSet:[self availableIndexPathsFromSelctedIndexPath:indexPath sectedIndexPaths:_selectedIndexPaths]];
+        [self updateCurrentResult];
+        return;
     }
     
     if (lastIndexPath.item != indexPath.item) {
@@ -91,9 +92,8 @@
         [_selectedIndexPaths addObject:indexPath];
         [_selectedIndexPaths removeObject:lastIndexPath];
         [self updateAvailableIndexPaths];
+        [self updateCurrentResult];
     }
-    
-    [self updateCurrentResult];
 }
 
 
