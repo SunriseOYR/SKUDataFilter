@@ -47,6 +47,12 @@
     return self;
 }
 
+- (void)reloadData {
+    [_selectedIndexPaths removeAllObjects];
+    [self initPropertiesSkuListData];
+    [self updateCurrentResult];
+}
+
 #pragma mark -- public method
 //选中某个属性
 - (void)didSelectedPropertyWithIndexPath:(NSIndexPath *)indexPath {
@@ -94,6 +100,7 @@
         [self updateAvailableIndexPaths];
         [self updateCurrentResult];
     }
+    
 }
 
 

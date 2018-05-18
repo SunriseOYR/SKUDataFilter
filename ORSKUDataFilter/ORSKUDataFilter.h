@@ -42,7 +42,7 @@
  *  ----------------- links -----------------
  *
  *  github: https://github.com/SunriseOYR/SKUDataFilter
- *  blog
+ *  bigo
  */
 
 
@@ -97,6 +97,10 @@
 //选中 属性的时候 调用
 - (void)didSelectedPropertyWithIndexPath:(NSIndexPath *)indexPath;
 
+//重新加载数据
+- (void)reloadData;
+
+
 @end
 
 
@@ -106,7 +110,7 @@
 
 @property (nonatomic, strong, readonly) NSArray<NSNumber *> *conditionIndexs;
 
-@property (nonatomic, copy) id result;
+@property (nonatomic, strong) id result;
 
 @end
 
