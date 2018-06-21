@@ -115,6 +115,12 @@
         
         ORSKUCondition *model = [ORSKUCondition new];
         NSArray * conditions = [_dataSource filter:self conditionForRow:i];
+        
+        if (conditions.count != [_dataSource numberOfSectionsForPropertiesInFilter:self]) {
+            NSLog(@"第 %d 个 condition 不完整 \n %@", i, conditions);
+            continue;
+        }
+        
         model.properties = [self propertiesWithConditionRawData:conditions];
         model.result = [_dataSource filter:self resultOfConditionForRow:i];
         
