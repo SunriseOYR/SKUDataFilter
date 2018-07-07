@@ -15,6 +15,7 @@
 		4D322A901FD817C900EE24D9 /* UIButton+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D322A861FD817C900EE24D9 /* UIButton+ORIBProperty.m */; };
 		4D322A911FD817C900EE24D9 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D322A891FD817C900EE24D9 /* Aspects.m */; };
 		4D322A921FD817C900EE24D9 /* UITextView+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D322A8A1FD817C900EE24D9 /* UITextView+ORIBProperty.m */; };
+		4D38B48F20F116D1006ACEC6 /* ORSKUDataFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D38B48D20F116D1006ACEC6 /* ORSKUDataFilter.m */; };
 		4DD943201FD8113E00BA2396 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9431F1FD8113E00BA2396 /* AppDelegate.m */; };
 		4DD943281FD8113E00BA2396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DD943271FD8113E00BA2396 /* Assets.xcassets */; };
 		4DD9432B1FD8113E00BA2396 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD943291FD8113E00BA2396 /* LaunchScreen.storyboard */; };
@@ -23,7 +24,6 @@
 		4DD943431FD8113E00BA2396 /* SKUDataFilterDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD943421FD8113E00BA2396 /* SKUDataFilterDemoUITests.m */; };
 		4DD943551FD811A400BA2396 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD943541FD811A400BA2396 /* ViewController.m */; };
 		4DD943571FD811AD00BA2396 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD943561FD811AD00BA2396 /* Main.storyboard */; };
-		C9A2E0B520AE81FE00E48AEC /* ORSKUDataFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A2E0B420AE81FE00E48AEC /* ORSKUDataFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +61,8 @@
 		4D322A881FD817C900EE24D9 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		4D322A891FD817C900EE24D9 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		4D322A8A1FD817C900EE24D9 /* UITextView+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ORIBProperty.m"; sourceTree = "<group>"; };
+		4D38B48D20F116D1006ACEC6 /* ORSKUDataFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSKUDataFilter.m; sourceTree = "<group>"; };
+		4D38B48E20F116D1006ACEC6 /* ORSKUDataFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSKUDataFilter.h; sourceTree = "<group>"; };
 		4DD9431B1FD8113E00BA2396 /* SKUDataFilterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKUDataFilterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DD9431E1FD8113E00BA2396 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4DD9431F1FD8113E00BA2396 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,8 +79,6 @@
 		4DD943531FD811A400BA2396 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4DD943541FD811A400BA2396 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4DD943561FD811AD00BA2396 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		C9A2E0B320AE81FE00E48AEC /* ORSKUDataFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSKUDataFilter.h; sourceTree = "<group>"; };
-		C9A2E0B420AE81FE00E48AEC /* ORSKUDataFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSKUDataFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +138,16 @@
 			path = Aspects;
 			sourceTree = "<group>";
 		};
+		4D38B48C20F116D1006ACEC6 /* SKUDataFilter */ = {
+			isa = PBXGroup;
+			children = (
+				4D38B48D20F116D1006ACEC6 /* ORSKUDataFilter.m */,
+				4D38B48E20F116D1006ACEC6 /* ORSKUDataFilter.h */,
+			);
+			name = SKUDataFilter;
+			path = ../../SKUDataFilter;
+			sourceTree = "<group>";
+		};
 		4DD943121FD8113E00BA2396 = {
 			isa = PBXGroup;
 			children = (
@@ -161,7 +171,7 @@
 		4DD9431D1FD8113E00BA2396 /* SKUDataFilterDemo */ = {
 			isa = PBXGroup;
 			children = (
-				C9A2E0B220AE81FE00E48AEC /* ORSKUDataFilter */,
+				4D38B48C20F116D1006ACEC6 /* SKUDataFilter */,
 				4D322A781FD817C900EE24D9 /* ORIBProperty */,
 				4DD9431E1FD8113E00BA2396 /* AppDelegate.h */,
 				4DD9431F1FD8113E00BA2396 /* AppDelegate.m */,
@@ -192,16 +202,6 @@
 				4DD943441FD8113E00BA2396 /* Info.plist */,
 			);
 			path = SKUDataFilterDemoUITests;
-			sourceTree = "<group>";
-		};
-		C9A2E0B220AE81FE00E48AEC /* ORSKUDataFilter */ = {
-			isa = PBXGroup;
-			children = (
-				C9A2E0B320AE81FE00E48AEC /* ORSKUDataFilter.h */,
-				C9A2E0B420AE81FE00E48AEC /* ORSKUDataFilter.m */,
-			);
-			name = ORSKUDataFilter;
-			path = ../../ORSKUDataFilter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,7 +341,7 @@
 				4D322A901FD817C900EE24D9 /* UIButton+ORIBProperty.m in Sources */,
 				4D322A8D1FD817C900EE24D9 /* UITextField+ORIBProperty.m in Sources */,
 				4D322A8B1FD817C900EE24D9 /* UICollectionViewFlowLayout+ORIBProperty.m in Sources */,
-				C9A2E0B520AE81FE00E48AEC /* ORSKUDataFilter.m in Sources */,
+				4D38B48F20F116D1006ACEC6 /* ORSKUDataFilter.m in Sources */,
 				4DD9432E1FD8113E00BA2396 /* main.m in Sources */,
 				4D322A921FD817C900EE24D9 /* UITextView+ORIBProperty.m in Sources */,
 				4D322A8E1FD817C900EE24D9 /* UIView+ORIBProperty.m in Sources */,
