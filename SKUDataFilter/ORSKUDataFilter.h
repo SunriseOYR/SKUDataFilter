@@ -42,7 +42,7 @@
  *  ----------------- links -----------------
  *
  *  github: https://github.com/SunriseOYR/SKUDataFilter
- *  bigo
+ *  bigo: https://www.jianshu.com/p/295737e2ac77
  */
 
 

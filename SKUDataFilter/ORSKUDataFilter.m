@@ -116,7 +116,7 @@
         ORSKUCondition *model = [ORSKUCondition new];
         NSArray * conditions = [_dataSource filter:self conditionForRow:i];
         
-        if (conditions.count != [_dataSource numberOfSectionsForPropertiesInFilter:self]) {
+        if (![self checkConformToSkuConditions:conditions]) {
             NSLog(@"第 %d 个 condition 不完整 \n %@", i, conditions);
             continue;
         }
@@ -129,6 +129,23 @@
     _conditions = [modelSet copy];
     
     [self getAllAvailableIndexPaths];
+}
+
+//检查数据是否正确
+- (BOOL)checkConformToSkuConditions:(NSArray *)conditions {
+    if (conditions.count != [_dataSource numberOfSectionsForPropertiesInFilter:self]) {
+        return NO;
+    }
+    
+    __block BOOL  flag = YES;
+    [conditions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *properties = [_dataSource filter:self propertiesInSection:idx];
+        if (![properties containsObject:obj]) {
+            flag = NO;
+            *stop = YES;
+        }
+    }];
+    return flag;
 }
 
 //获取属性
