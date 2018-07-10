@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "SKUDataFilter"
-s.version      = "1.0.0"
+s.version      = "1.0.1"
 s.ios.deployment_target = '7.0'
 s.summary      = "A fiter which deal with SKU datas"
 #s.description  = <<-DESC
