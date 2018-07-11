@@ -4,17 +4,26 @@ SKU 商品规格组合算法
 ![003.gif](http://upload-images.jianshu.io/upload_images/5192751-68d22cd9e80f8e08.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-[博客详解](http://www.jianshu.com/p/295737e2ac77)
+[博客详解SKU算法](http://www.jianshu.com/p/295737e2ac77)
   
   
+ 
 
-**更新日志**  
+## 更新日志
 
-2018.06.21 最近收到很多因为部分sku信息不完整，导致崩溃的反馈。所以新增了sku-condition的检测，过滤并提示了不完整的condition。已更新  
+##### 2018.07.11 ~ cocoapods version 1.0.1
+- 支持cocopods 导入  
 
-2017.12.16 由于之前的疏忽，在更新算法的时候，漏了一个点，导致一个非常严重的bug，感谢简书网友@毕小强 指出，已更新
+      pod 'SKUDataFilter'
+- 升级数据防崩溃过滤，即使sku-condition完全对不上号，也不会闪退了。（针对某些极端测试人员）
 
-**正文**    
+##### 2018.06.21  -  
+- 最近收到很多因为部分sku信息不完整，导致崩溃的反馈。所以新增了sku-condition的检测，过滤并提示了不完整的condition。已更新
+
+##### 2017.12.16  -  
+- 由于之前的疏忽，在更新算法的时候，漏了一个点，导致一个非常严重的bug，感谢简书网友[@毕小强](http://www.jianshu.com/u/1d1454c9bb0b) 指出，已更新
+
+## 正文  
 
 SKUDataFilter 使用NSIndexPath记录每个属性的坐标。表示为 **第section 种属性类下面的 第item个 属性 （从0计数)**
 条件式下标(conditionIndexs)中记录的属性indexPath的 item
@@ -23,7 +32,7 @@ SKUDataFilter 使用NSIndexPath记录每个属性的坐标。表示为 **第sect
        // 判断属性是否存在于条件式中
        conditionIndexs[indexPath.section] == indexPath.row
   
-**数据通配**  
+## 数据通配
  conditionIndexs 和indexPath的结合 为SKUDataFilter 不仅算法上取得了优势，同时也在 数据通配 上起了莫大的作用
 
 不同的后台，不同的需求，返回的数据结构都不一样。
@@ -79,7 +88,7 @@ SKUDataFilter最终直接反映的是属性的indexPath, 如果你的属性在UI
     //当前 可选的属性indexPath
     @property (nonatomic, strong, readonly) NSArray <NSIndexPath *> *availableIndexPaths;
 
-**使用注意** 
+## 使用注意
 
 1、虽然SKUDataFilter不关心具体的值，但是条件式本质是由属性组成，故代理方法filter:propertiesInSection：和方法filter:conditionForRow：数据类型应该保持一致  
 2、因为SKUDataFilter关心的是属性的坐标，那么在代理方法传值的时候，代理方法filter:propertiesInSection：和方法filter:conditionForRow：各自的数据顺序要保持一致 并且两个方法的数据也要对应 
