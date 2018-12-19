@@ -47,6 +47,8 @@ SKUDataFilter最终直接反映的是属性的indexPath, 如果你的属性在UI
 
      - (instancetype)initWithDataSource:(id<ORSKUDataFilterDataSource>)dataSource;
 
+     //当数据更新的时候 重新加载数据
+     - (void)reloadData;
 
 2、通过代理方法 ，将数据传给Filter
 
