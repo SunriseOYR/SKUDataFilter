@@ -94,6 +94,10 @@
 //init
 - (instancetype)initWithDataSource:(id<ORSKUDataFilterDataSource>)dataSource;
 
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
++ (instancetype)new UNAVAILABLE_ATTRIBUTE;
+
+
 //选中 属性的时候 调用
 - (void)didSelectedPropertyWithIndexPath:(NSIndexPath *)indexPath;
 

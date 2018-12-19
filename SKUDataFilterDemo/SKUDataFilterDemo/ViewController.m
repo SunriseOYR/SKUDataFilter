@@ -77,6 +77,8 @@
     
     _filter = [[ORSKUDataFilter alloc] initWithDataSource:self];
     
+    //当数据更新的时候 需要reloadData
+    [_filter reloadData];
     [self.collectionView reloadData];
     
 }

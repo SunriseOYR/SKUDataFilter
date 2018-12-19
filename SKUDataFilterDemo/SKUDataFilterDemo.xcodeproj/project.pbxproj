@@ -141,8 +141,8 @@
 		4D38B48C20F116D1006ACEC6 /* SKUDataFilter */ = {
 			isa = PBXGroup;
 			children = (
-				4D38B48D20F116D1006ACEC6 /* ORSKUDataFilter.m */,
 				4D38B48E20F116D1006ACEC6 /* ORSKUDataFilter.h */,
+				4D38B48D20F116D1006ACEC6 /* ORSKUDataFilter.m */,
 			);
 			name = SKUDataFilter;
 			path = ../../SKUDataFilter;
