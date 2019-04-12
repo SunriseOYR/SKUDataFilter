@@ -125,7 +125,7 @@
         model.properties = [self propertiesWithConditionRawData:conditions];
         model.result = [_dataSource filter:self resultOfConditionForRow:i];
         
-        if (self.selectedIndexPaths.count == 0 && _needDefaultValue) {
+        if (self.selectedIndexPaths.count == 0 && _needDefaultValue && !_defaultSku) {
             _defaultSku = model;
         }
         
