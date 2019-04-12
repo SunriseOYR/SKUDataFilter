@@ -81,6 +81,15 @@
     [_filter reloadData];
     [self.collectionView reloadData];
     
+    
+    //默认选中
+    
+    {
+        _filter.needDefaultValue = YES;
+        [self.collectionView reloadData];
+        [self action_complete:nil];
+    }
+    
 }
 
 #pragma mark -- collectionView

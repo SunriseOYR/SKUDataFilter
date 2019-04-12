@@ -14,12 +14,10 @@
 
 @property (nonatomic, strong) NSMutableArray <NSIndexPath *> *selectedIndexPaths;
 
-
 @property (nonatomic, strong) NSMutableSet <NSIndexPath *> *availableIndexPathsSet;
 
 //全可用的
 @property (nonatomic, strong) NSSet <NSIndexPath *> *allAvailableIndexPaths;
-
 
 @property (nonatomic, strong) id  currentResult;
 
@@ -123,6 +121,12 @@
         
         model.properties = [self propertiesWithConditionRawData:conditions];
         model.result = [_dataSource filter:self resultOfConditionForRow:i];
+        
+        if (self.selectedIndexPaths.count == 0 && _needDefaultValue) {
+            [model.properties enumerateObjectsUsingBlock:^(ORSKUProperty * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self didSelectedPropertyWithIndexPath:obj.indexPath];
+            }];
+        }
         
         [modelSet addObject:model];
     }
@@ -317,7 +321,18 @@
 #pragma mark -- setter
 - (void)setDataSource:(id<ORSKUDataFilterDataSource>)dataSource {
     _dataSource = dataSource;
-    [self initPropertiesSkuListData];
+    [self reloadData];
+}
+
+- (void)setNeedDefaultValue:(BOOL)needDefaultValue {
+    
+    _needDefaultValue = needDefaultValue;
+    
+    if (_selectedIndexPaths.count > 0 || !needDefaultValue) {
+        return;
+    }
+    
+    [self reloadData];
 }
 
 @end

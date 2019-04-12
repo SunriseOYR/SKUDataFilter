@@ -90,6 +90,7 @@
 //当前 结果
 @property (nonatomic, strong, readonly) id  currentResult;
 
+@property (nonatomic, assign) BOOL needDefaultValue;
 
 //init
 - (instancetype)initWithDataSource:(id<ORSKUDataFilterDataSource>)dataSource;
