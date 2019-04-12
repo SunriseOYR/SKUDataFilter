@@ -8,7 +8,9 @@
 
 #import "ORSKUDataFilter.h"
 
-@interface ORSKUDataFilter()
+@interface ORSKUDataFilter() {
+    ORSKUCondition *_defaultSku;
+}
 
 @property (nonatomic, strong) NSSet <ORSKUCondition *> *conditions;
 
@@ -47,6 +49,7 @@
 
 - (void)reloadData {
     [_selectedIndexPaths removeAllObjects];
+    _defaultSku = nil;
     [self initPropertiesSkuListData];
     [self updateCurrentResult];
 }
@@ -123,9 +126,7 @@
         model.result = [_dataSource filter:self resultOfConditionForRow:i];
         
         if (self.selectedIndexPaths.count == 0 && _needDefaultValue) {
-            [model.properties enumerateObjectsUsingBlock:^(ORSKUProperty * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self didSelectedPropertyWithIndexPath:obj.indexPath];
-            }];
+            _defaultSku = model;
         }
         
         [modelSet addObject:model];
@@ -133,6 +134,12 @@
     _conditions = [modelSet copy];
     
     [self getAllAvailableIndexPaths];
+    
+    if (_defaultSku) {
+        [_defaultSku.properties enumerateObjectsUsingBlock:^(ORSKUProperty * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self didSelectedPropertyWithIndexPath:obj.indexPath];
+        }];
+    }
 }
 
 //检查数据是否正确
