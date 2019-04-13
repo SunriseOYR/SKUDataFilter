@@ -11,6 +11,14 @@ SKU 商品规格组合算法
 
 ## 更新日志
 
+##### 2019.04.12 
+- 加入是否默认选中第一组SKU的控制
+
+      // needDefaultValue
+      _filter.needDefaultValue = YES;
+      [self.collectionView reloadData]; //更新UI显示
+      [self action_complete:nil];       //更新结果查询
+
 ##### 2018.07.11 ~ cocoapods version 1.0.1
 - 支持cocopods 导入  
 

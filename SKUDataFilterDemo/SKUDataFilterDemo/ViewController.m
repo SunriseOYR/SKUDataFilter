@@ -78,17 +78,17 @@
     _filter = [[ORSKUDataFilter alloc] initWithDataSource:self];
     
     //当数据更新的时候 需要reloadData
-    [_filter reloadData];
-    [self.collectionView reloadData];
+//    [_filter reloadData];
+//    [self.collectionView reloadData];
     
     
     //默认选中
     
-    {
-        _filter.needDefaultValue = YES;
-        [self.collectionView reloadData];
-        [self action_complete:nil];
-    }
+
+    _filter.needDefaultValue = YES;
+    [self.collectionView reloadData]; //更新UI显示
+    [self action_complete:nil];       //更新结果查询
+
     
 }
 
