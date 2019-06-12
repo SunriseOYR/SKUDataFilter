@@ -1,4 +1,9 @@
 # SKUFilterManager
+
+[![Version](https://img.shields.io/cocoapods/v/SKUDataFilter.svg?style=flat)](https://cocoapods.org/pods/SKUDataFilter)
+[![License](https://img.shields.io/cocoapods/l/SKUDataFilter.svg?style=flat)](https://cocoapods.org/pods/SKUDataFilter)
+[![Platform](https://img.shields.io/cocoapods/p/SKUDataFilter.svg?style=flat)](https://cocoapods.org/pods/SKUDataFilter)
+
 SKU 商品规格组合算法 
 
 ![003.gif](http://upload-images.jianshu.io/upload_images/5192751-68d22cd9e80f8e08.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
