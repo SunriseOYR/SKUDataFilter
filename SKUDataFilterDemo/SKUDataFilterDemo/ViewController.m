@@ -171,7 +171,8 @@
 #pragma mark -- action
 - (IBAction)action_complete:(id)sender {
     
-    
+//    NSLog(@"%@", _filter.currentAvailableResutls);
+
     NSDictionary *dic = _filter.currentResult;
     
     if (dic == nil) {
@@ -183,6 +184,7 @@
     
     _priceL.text = [NSString stringWithFormat:@"￥%@",dic[@"price"]];
     _storeL.text = [NSString stringWithFormat:@"库存%@件",dic[@"store"]];
+    
 }
 
 

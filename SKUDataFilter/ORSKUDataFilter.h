@@ -84,11 +84,13 @@
 @property (nonatomic, assign) id<ORSKUDataFilterDataSource> dataSource;
 
 //当前 选中的属性indexPath
-@property (nonatomic, strong, readonly) NSArray <NSIndexPath *> *selectedIndexPaths;
+@property (nonatomic, strong, readonly) NSSet <NSIndexPath *> *selectedIndexPaths;
 //当前 可选的属性indexPath
 @property (nonatomic, strong, readonly) NSSet <NSIndexPath *> *availableIndexPathsSet;
 //当前 结果
-@property (nonatomic, strong, readonly) id  currentResult;
+@property (nonatomic, strong, readonly) id currentResult;
+//当前 可用结果，一般用于 价格区间变动
+@property (nonatomic, strong, readonly) NSSet *currentAvailableResutls;
 
 @property (nonatomic, assign) BOOL needDefaultValue;
 
@@ -114,6 +116,7 @@
 @property (nonatomic, strong) NSArray<ORSKUProperty *> *properties;
 
 @property (nonatomic, strong, readonly) NSArray<NSNumber *> *conditionIndexs;
+@property (nonatomic, strong, readonly) NSSet <NSIndexPath *> *conditionIndexPaths;
 
 @property (nonatomic, strong) id result;
 
