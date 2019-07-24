@@ -92,6 +92,7 @@
 //当前 可用结果，一般用于 价格区间变动
 @property (nonatomic, strong, readonly) NSSet *currentAvailableResutls;
 
+//是否需要默认选中第一组SKU
 @property (nonatomic, assign) BOOL needDefaultValue;
 
 //init
