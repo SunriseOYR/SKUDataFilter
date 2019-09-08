@@ -53,7 +53,7 @@ class ORSKUDataFilter {
     
     
     
-    init(_ dataSource: ORSKUDataFilterDataSource) {
+    init(dataSource: ORSKUDataFilterDataSource) {
         self.dataSource = dataSource
         reloadData()
     }
