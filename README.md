@@ -1,4 +1,4 @@
-# SKUFilterManager
+# SKUDataFilter
 
 [![Version](https://img.shields.io/cocoapods/v/SKUDataFilter.svg?style=flat)](https://cocoapods.org/pods/SKUDataFilter)
 [![License](https://img.shields.io/cocoapods/l/SKUDataFilter.svg?style=flat)](https://cocoapods.org/pods/SKUDataFilter)
