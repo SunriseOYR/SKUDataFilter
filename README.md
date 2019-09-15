@@ -284,6 +284,9 @@ conditionIndexs[indexPath.section] == indexPath.row
 
 # <a id="aboutSku"></a>更新日志
 
+##### 2019.09.15 
+- 更新swift 
+
 ##### 2019.07.23 
 - 加入属性 当前所有可用结果的结果查询， 一般用于 价格区间 动态变化
 
