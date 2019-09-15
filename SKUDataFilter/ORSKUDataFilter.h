@@ -89,7 +89,7 @@
 @property (nonatomic, strong, readonly) NSSet <NSIndexPath *> *availableIndexPathsSet;
 //当前 结果
 @property (nonatomic, strong, readonly) id currentResult;
-//当前 可用结果，一般用于 价格区间动态变话
+//当前 可用结果，一般用于 价格区间动态变化
 @property (nonatomic, strong, readonly) NSSet *currentAvailableResutls;
 
 //是否需要默认选中第一组SKU

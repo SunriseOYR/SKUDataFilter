@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="FVo-p6-Q0n">
             <objects>
-                <viewController id="OwU-Vu-2z4" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="OwU-Vu-2z4" customClass="ViewController" customModule="SKUDataFilterDemo_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4de-hR-AFS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,7 +150,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PropertyCell" id="rH5-Ms-7jV" customClass="PropertyCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PropertyCell" id="rH5-Ms-7jV" customClass="PropertyCell" customModule="SKUDataFilterDemo_Swift" customModuleProvider="target">
                                         <rect key="frame" x="10" y="56" width="70" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -186,11 +186,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="propertyL" destination="s8H-u3-Hid" id="lg0-8O-uPd"/>
+                                            <outlet property="propertyL" destination="s8H-u3-Hid" id="W64-zJ-ZPO"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="headerIdf" id="XZf-Gf-0lc" customClass="PropertyHeader">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="headerIdf" id="XZf-Gf-0lc" customClass="PropertyHeader" customModule="SKUDataFilterDemo_Swift" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -205,7 +205,7 @@
                                         <constraint firstItem="xDF-qu-3VH" firstAttribute="centerY" secondItem="XZf-Gf-0lc" secondAttribute="centerY" id="gdS-JJ-VYJ"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="headernameL" destination="xDF-qu-3VH" id="VpL-Ei-e0t"/>
+                                        <outlet property="headernameL" destination="xDF-qu-3VH" id="RrF-OK-XhN"/>
                                     </connections>
                                 </collectionReusableView>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="footerIdf" id="CWV-K7-Tgu">
@@ -213,7 +213,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yiq-XD-nYS">
-                                            <rect key="frame" x="10" y="22" width="355" height="1"/>
+                                            <rect key="frame" x="10" y="22" width="394" height="1"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="05p-6p-7yz"/>
@@ -259,9 +259,9 @@
                         <viewLayoutGuide key="safeArea" id="uof-da-vT1"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="ehp-xC-aHb" id="SMg-Cg-rMe"/>
-                        <outlet property="priceL" destination="beJ-g9-28g" id="Y4V-Fu-5c0"/>
-                        <outlet property="storeL" destination="Gfn-oL-9qN" id="kWb-HV-6Zu"/>
+                        <outlet property="collectionView" destination="ehp-xC-aHb" id="VyD-5l-dDP"/>
+                        <outlet property="priceL" destination="beJ-g9-28g" id="ssC-ri-lNh"/>
+                        <outlet property="storeL" destination="Gfn-oL-9qN" id="1jh-Ht-a4z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="atA-Hx-gJu" sceneMemberID="firstResponder"/>

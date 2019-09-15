@@ -1,6 +1,6 @@
 //
 //  ORSKUDataFilter.swift
-//  SKUFilterDemo
+//  SKUDataFilter-Swift
 //
 //  Created by 欧阳荣 on 2019/7/22.
 //  Copyright © 2019 swift. All rights reserved.
@@ -39,8 +39,15 @@ class ORSKUDataFilter {
     }
     
     //是否需要默认选中第一组SKU
-    var needDefaultValue = true;
-    
+    var needDefaultValue:Bool? {
+        didSet {
+            guard selectedIndexPaths.count == 0 && needDefaultValue == true else {
+                return
+            }
+            reloadData()
+        }
+    }
+
     //当前 选中的 属性indexPath
     private(set) var selectedIndexPaths: Set<IndexPath> = []
     //当前 可选的属性 indexPath
@@ -74,31 +81,38 @@ class ORSKUDataFilter {
         selectedIndexPaths = []
         availableIndexPathsSet = []
         
-        // 条件集合
+        
+        var defaultSkuIndexPath:Set<IndexPath>?
         var temps = Set<ORSKUCondition>()
         (0 ..< dataSource.numberOfConditions(filter: self)).forEach {
+            
             let conditions = dataSource.condition(filter: self, at: $0)
             
-            
+            var tempIndexPaths = Set<IndexPath>()
             let arrtibutes: [ORSKUProperty] = conditions.enumerated().compactMap {
                 guard
                     dataSource.numberOfSectionsForProperties(filter: self) > $0,
                     let index = dataSource.properties(filter: self, in: $0).firstIndex(of: $1) else {
+                        
+                        print("第 \($0) 个 condition 不完整 \n \(conditions)")
                         return nil
                 }
                 let indexPath = IndexPath(item: index, section: $0)
+                tempIndexPaths.insert(indexPath)
                 return ORSKUProperty(indexPath, $1)
             }
             
             if arrtibutes.count == conditions.count {
                 
-//                ORSKUCondition(properties: arrtibutes, indexs: arrtibutes.map { $0.indexPath.item }, result: dataSource.resultOfCondition(self, at: $0), indexPaths:[])
+                if (temps.count == 0 && needDefaultValue == true) {
+                    defaultSkuIndexPath = tempIndexPaths;
+                }
                 
                 let condition = ORSKUCondition(
                     properties: arrtibutes,
                     indexs: arrtibutes.map { $0.indexPath.item },
                     result: dataSource.resultOfCondition(filter: self, at: $0),
-                    indexPaths:[]
+                    indexPaths: tempIndexPaths
                 )
                 temps.insert(condition)
             }
@@ -113,12 +127,19 @@ class ORSKUDataFilter {
         })
         
         allAvailableIndexPaths = availableIndexPathsSet
+        
+        if defaultSkuIndexPath != nil {
+            defaultSkuIndexPath?.forEach { (indexPath) in
+                selectedProperty(at: indexPath)
+            }
+        }
+        
     }
     
     /// 选择
     ///
     /// - Parameter indexPath: 位置
-    func selected(_ indexPath: IndexPath) {
+    func selectedProperty(at indexPath: IndexPath) {
         guard availableIndexPathsSet.contains(indexPath) else {
             // 不可选
             return
@@ -133,24 +154,23 @@ class ORSKUDataFilter {
         }
         guard !selectedIndexPaths.contains(indexPath) else {
             // 已选
-//            var ar = <#value#>
             selectedIndexPaths.remove(indexPath)
-//            selectedIndexPaths.removeAll { $0 == indexPath }
             updateAvailable()
             updateResult()
             return
         }
         
-        selectedIndexPaths.insert(indexPath)
 
         if let brather = selectedIndexPaths.filter({ $0.section == indexPath.section }).first {
             // 移除兄弟属性
+            selectedIndexPaths.insert(indexPath)
             selectedIndexPaths.remove(brather)
             updateAvailable()
             updateResult()
             
         } else {
             // 新增
+            selectedIndexPaths.insert(indexPath)
             availableIndexPathsSet.formIntersection(availableIndexPathsSet(indexPath, with: selectedIndexPaths))
             updateResult()
         }
@@ -176,11 +196,6 @@ extension ORSKUDataFilter {
     }
     
     /// 获取可选集合
-    ///
-    /// - Parameters:
-    ///   - selected: 当前选择
-    ///   - selectedIndexPaths: 已选集合
-    /// - Returns: 可选集合
     private func availableIndexPathsSet(_ selected: IndexPath, with selectedIndexPaths: Set<IndexPath>) -> Set<IndexPath> {
         var temps = Set<IndexPath>()
         
