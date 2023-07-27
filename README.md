@@ -58,7 +58,7 @@
 
 我们把 一组满足条件的属性 叫做条件式 ，那么这里就有三个条件式
 用个图来表示他们之间的关系 （红线为F-G-S） 
-![condition.png](https://user-gold-cdn.xitu.io/2019/7/22/16c184245268e427?w=230&h=227&f=png&s=22297)
+![condition.png](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/7/22/16c184245268e427~tplv-t2oaga2asx-image.image)
 
 
  
